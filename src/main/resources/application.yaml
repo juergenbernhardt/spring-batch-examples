@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: spring-batch-example
+  liquibase:
+    enabled: false
+  batch:
+    jdbc:
+      initialize-schema: "always"
+management:
+  endpoint:
+    scheduledtasks:
+      enabled: true
+  datasource:
+    url: jdbc:sqlite:batch.db
+    username: sa
+    password: sa
+    driverClassName: org.sqlite.JDBC
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      maximumPoolSize: 5
+      minimumIdle: 1
+      idleTimeout: 600000
+      maxLifetime: 1740000
+      connectionTimeout: 5000
+      keepalive-time: 300000
+      poolName: ${spring.application.name}
+
+  jpa:
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: none
